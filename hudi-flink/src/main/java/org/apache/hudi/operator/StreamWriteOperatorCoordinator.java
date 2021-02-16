@@ -305,13 +305,17 @@ public class StreamWriteOperatorCoordinator
     }
   }
 
-  /** Checks the buffer is ready to commit. */
+  /**
+   * Checks the buffer is ready to commit.
+   */
   private boolean checkReady() {
     return Arrays.stream(eventBuffer).allMatch(event ->
         event != null && event.getInstantTime().equals(this.inFlightInstant));
   }
 
-  /** Performs the actual commit action. */
+  /**
+   * Performs the actual commit action.
+   */
   private void doCommit() {
     List<WriteStatus> writeResults = Arrays.stream(eventBuffer)
         .map(BatchWriteSuccessEvent::getWriteStatuses)
@@ -389,7 +393,12 @@ public class StreamWriteOperatorCoordinator
     }
 
     public OperatorCoordinator create(Context context) {
-      return new StreamWriteOperatorCoordinator(this.conf, this.numTasks);
+      System.out.println("pppppppppp -> " + context.currentParallelism());
+      System.out.println("pppppppppp -> " + context.currentParallelism());
+      System.out.println("pppppppppp -> " + context.currentParallelism());
+      System.out.println("pppppppppp -> " + context.currentParallelism());
+      System.out.println("pppppppppp -> " + context.currentParallelism());
+      return new StreamWriteOperatorCoordinator(this.conf, numTasks);
     }
   }
 }
